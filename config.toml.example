@@ -1,0 +1,34 @@
+#owners = []
+#nickname = "user"
+#nick_password = "password"
+#alt_nicks = ["user_", "user__"]
+#username = "user"
+#realname = "Test User"
+#server = "chat.freenode.net"
+#port = 6697
+#password = ""
+#proxy_type = "None"
+#proxy_server = "127.0.0.1"
+#proxy_port = "1080"
+#proxy_username = ""
+#proxy_password = ""
+#use_tls = true
+#cert_path = "cert.der"
+#dangerously_accept_invalid_certs = false
+#client_cert_path = "client.der"
+#client_cert_pass = "password"
+#encoding = "UTF-8"
+#channels = ["#rust", "#haskell", "#fake"]
+#umodes = "+RB-x"
+#user_info = "I'm a test user for the irc crate."
+#version = "irc:git:Rust"
+#source = "https://github.com/aatxe/irc"
+#ping_time = 180
+#ping_timeout = 20
+#burst_window_length = 8
+#max_messages_in_burst = 15
+#should_ghost = false
+#ghost_sequence = []
+
+#[channel_keys]
+#"#fake" = "password"
