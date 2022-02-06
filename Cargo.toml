@@ -1,13 +1,17 @@
 [package]
 name = "personal-op-bot"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
+authors = ["Hyeon Kim <simnalamburt@gmail.com>"]
+description = "A simple and ignorant IRC OP maintenance bot"
+repository = "https://github.com/simnalamburt/personal-op-bot"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 anyhow = "1"
 rust-argon2 = "1.0"
+clap = { version = "3.0.14", features = ["derive"] }
 
 futures = "0.3"
 tokio = { version = "1", features = ["full"] }

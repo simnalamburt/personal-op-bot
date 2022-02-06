@@ -10,4 +10,4 @@ FROM ${TARGETARCH} AS build
 
 FROM alpine
 COPY --from=build /x/bin/personal-op-bot /usr/local/bin/personal-op-bot
-CMD ["personal-op-bot", "/a/config.toml"]
+CMD ["personal-op-bot", "--config", "/a/config.toml"]

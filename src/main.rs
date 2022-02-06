@@ -1,5 +1,6 @@
 use anyhow::{anyhow, Result};
 use argon2::verify_encoded;
+use clap::Parser;
 
 use futures::prelude::*;
 use tokio::task::spawn_blocking;
@@ -10,11 +11,21 @@ use irc::proto::Command;
 
 const HASH: &str = "$argon2id$v=19$m=65536,t=3,p=4$eW9sb3N3YWd5b2xvc3dhZw$kUIWwfRAKBVZRuQUOovTLISQ2R9MdEhmQhGXBqG9iiQ";
 
+/// A simple and ignorant IRC OP maintenance bot
+#[derive(Parser)]
+#[clap(author, version, about)]
+struct Args {
+    /// Path of the config file
+    #[clap(short, long, default_value = "config.toml")]
+    config: String,
+}
+
 #[tokio::main]
 async fn main() -> Result<()> {
     tracing_subscriber::fmt::init();
 
-    let mut client = Client::new("config.toml").await?;
+    let args = Args::parse();
+    let mut client = Client::new(args.config).await?;
     let mut stream = client.stream()?;
 
     client.identify()?;
