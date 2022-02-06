@@ -14,4 +14,8 @@ tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
 tracing-subscriber = "0.3"
 
-irc = { git = "https://github.com/simnalamburt/irc" } # NOTE: https://github.com/aatxe/irc/pull/236
+[dependencies.irc]
+# FIXME: Use original crate when https://github.com/aatxe/irc/pull/236 merged
+git = "https://github.com/simnalamburt/irc"
+default-features = false
+features = ["ctcp", "tls-rust", "toml_config"]
