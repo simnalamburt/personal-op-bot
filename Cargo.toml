@@ -1,6 +1,6 @@
 [package]
 name = "personal-op-bot"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2021"
 authors = ["Hyeon Kim <simnalamburt@gmail.com>"]
 description = "A simple and ignorant IRC OP maintenance bot"

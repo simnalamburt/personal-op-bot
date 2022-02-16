@@ -35,16 +35,21 @@ async fn main() -> Result<()> {
         debug!("{}", msg.to_string().trim_end());
         trace!("{:#?}", msg);
 
+        let current = client.current_nickname();
+
         // Reference: https://modern.ircdocs.horse/#client-messages
         // TODO: handle '?'s properly
         match msg.command {
             Command::JOIN(chanlist, ..) => {
-                client.send_privmsg(&chanlist, "옵을 잃어버렸습니다. 옵을 주세요! CC @김지현")?;
-                info!("Joinned {}", chanlist);
+                if let Some(Prefix::Nickname(sender, ..)) = msg.prefix {
+                    if sender == current {
+                        client.send_privmsg(&chanlist, "옵을 주세요! CC @김지현")?;
+                        info!("Joinned {}", chanlist);
+                    }
+                }
             }
             Command::ChannelMODE(chan, modes) => {
                 // React on /op and /deop
-                let current = client.current_nickname();
                 for mode in modes {
                     match mode {
                         Mode::Plus(ChannelMode::Oper, Some(nick)) if nick == current => {
@@ -59,7 +64,7 @@ async fn main() -> Result<()> {
                     }
                 }
             }
-            Command::PRIVMSG(msgtarget, text) if msgtarget == client.current_nickname() => {
+            Command::PRIVMSG(msgtarget, text) if msgtarget == current => {
                 // React on OP request
                 if let Some(Prefix::Nickname(sender, ..)) = msg.prefix {
                     // Verify password
@@ -80,7 +85,7 @@ async fn main() -> Result<()> {
                     info!("Opped {} in {} as requested", sender, channels.join(", "));
                 }
             }
-            Command::KICK(chan, nick, comment) if nick == client.current_nickname() => {
+            Command::KICK(chan, nick, comment) if nick == current => {
                 // Automatically rejoin channel if the bot was kicked
                 client.send_join(&chan)?;
                 let reason = comment.unwrap_or_else(|| "No reason given".to_string());
