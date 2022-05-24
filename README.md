@@ -14,7 +14,7 @@ cargo run
 # Prepare ~/personal-op-bot/config.toml then run below:
 docker run -d --restart=always \
   --mount type=bind,source=${HOME}/personal-op-bot,target=/a \
-  ghcr.io/simnalamburt/personal-op-bot:1.0.1
+  ghcr.io/simnalamburt/personal-op-bot:1.0.2
 ```
 
 &nbsp;
