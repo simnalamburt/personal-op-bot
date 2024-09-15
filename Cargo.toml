@@ -10,7 +10,7 @@ repository = "https://github.com/simnalamburt/personal-op-bot"
 
 [dependencies]
 anyhow = "1"
-rust-argon2 = "1.0"
+rust-argon2 = "2"
 clap = { version = "4.3.1", features = ["derive"] }
 
 futures = "0.3"
